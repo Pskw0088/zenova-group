@@ -1,10 +1,32 @@
-import React from "react"
 import { Link } from "react-router-dom"
+
+/* 🔥 REUSABLE BUTTON (SAME FOR ALL) */
+const Button = ({ to, text, primary }) => {
+  const base =
+    "mt-6 inline-flex w-full items-center justify-center rounded-xl px-5 py-3 font-bold transition-all duration-300"
+
+  const primaryStyle =
+    "bg-blue-600 text-white hover:bg-blue-700"
+
+  const secondaryStyle =
+    "border border-zinc-200 text-zinc-900 hover:bg-zinc-900 hover:text-white"
+
+  return (
+    <Link
+      to={to}
+      className={`${base} ${primary ? primaryStyle : secondaryStyle}`}
+    >
+      {text}
+    </Link>
+  )
+}
 
 export default function Education() {
   return (
-    <div className="min-h-screen bg-white">
-      <div className="mx-auto max-w-6xl px-6 py-14 text-zinc-900">
+    <div className="min-h-screen bg-white text-zinc-900">
+      <div className="mx-auto max-w-6xl px-6 py-14">
+
+        {/* Header */}
         <Link to="/" className="text-blue-600 font-semibold hover:underline">
           ← Back to Home
         </Link>
@@ -13,38 +35,78 @@ export default function Education() {
           Zenova <span className="text-blue-600">Education</span>
         </h1>
 
-        <p className="mt-4 text-zinc-600 max-w-2xl leading-relaxed">
-          Zenova Education handles academic excellence via coaching and concept clarity.
-          Currently focused on <b>9th Grade Science</b>.
+        <p className="mt-4 max-w-2xl text-zinc-600 leading-relaxed">
+          Zenova Education helps students and professionals learn practical
+          skills, crack exams, and build careers with structured resources
+          and courses.
         </p>
 
-        {/* ✅ STRONG CARDS (VISIBLE CHANGE) */}
-        <div className="mt-10 grid md:grid-cols-3 gap-6">
-          {["NCERT + CBSE Focus", "Weekly Tests + Notes", "Doubt Support + Revision"].map(
-            (item, i) => (
-              <div
-                key={i}
-                className="rounded-3xl border-2 border-zinc-300 bg-gradient-to-b from-blue-50 to-white p-6 shadow-lg hover:shadow-2xl hover:-translate-y-1 hover:border-blue-400 transition-all duration-300 flex items-center gap-4 min-h-[120px]"
-              >
-                {/* icon badge */}
-                <div className="h-12 w-12 rounded-2xl bg-blue-600 text-white flex items-center justify-center text-lg font-black shadow-md">
-                  ✓
-                </div>
+        {/* Cards */}
+        <div className="mt-12 grid gap-8 md:grid-cols-3">
 
-                <p className="text-base md:text-lg font-extrabold text-zinc-900 leading-snug">
-                  {item}
-                </p>
-              </div>
-            )
-          )}
+          {/* COURSES */}
+          <div className="rounded-3xl border border-zinc-200 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-2 hover:shadow-xl">
+            <h2 className="text-2xl font-bold">Courses</h2>
+
+            <p className="mt-3 text-sm text-zinc-600">
+              Skill-based and career-focused courses to help you grow.
+            </p>
+
+            <ul className="mt-4 space-y-2 text-sm text-zinc-700">
+              <li>✅ Programming Languages</li>
+              <li>✅ Web Development</li>
+              <li>✅ Creative Software</li>
+              <li>✅ Data & AI</li>
+            </ul>
+
+            <Button
+              to="/education/courses"
+              text="Explore Courses"
+              primary
+            />
+          </div>
+
+          {/* STUDENT RESOURCES */}
+          <div className="rounded-3xl border border-zinc-200 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-2 hover:shadow-xl">
+            <h2 className="text-2xl font-bold">Student Resources</h2>
+
+            <p className="mt-3 text-sm text-zinc-600">
+              Notes, assignments, and real-world projects.
+            </p>
+
+            <ul className="mt-4 space-y-2 text-sm text-zinc-700">
+              <li>📘 Notes</li>
+              <li>📝 Assignments</li>
+              <li>💻 Projects</li>
+            </ul>
+
+            <Button
+              to="/education/resources"
+              text="View Resources"
+            />
+          </div>
+
+          {/* CAREER SUPPORT */}
+          <div className="rounded-3xl border border-zinc-200 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-2 hover:shadow-xl">
+            <h2 className="text-2xl font-bold">Career Support</h2>
+
+            <p className="mt-3 text-sm text-zinc-600">
+              Guidance to help you crack interviews.
+            </p>
+
+            <ul className="mt-4 space-y-2 text-sm text-zinc-700">
+              <li>📄 Resume Building</li>
+              <li>🎯 Interview Preparation</li>
+              <li>🚀 Career Guidance</li>
+            </ul>
+
+            <Button
+              to="/education/career"
+              text="Get Career Help"
+            />
+          </div>
+
         </div>
-
-        <Link
-          to="/contact"
-          className="inline-block mt-10 px-7 py-3 rounded-xl bg-blue-600 text-white font-bold hover:bg-blue-700 transition shadow-md"
-        >
-          Join Coaching
-        </Link>
       </div>
     </div>
   )
